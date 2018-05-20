@@ -119,7 +119,7 @@ class Datatables {
             {
 				if(array_key_exists($key,$allcolumns)){
 					if ($allcolumns[ $key ]['searchable'] == 'true')
-						$lookfor[] = $column . " LIKE binary " . $this->db->escape($word) . "";
+						$lookfor[] = "CONVERT(`".$column."` USING utf8) LIKE " . $this->db->escape($word) . "";
 				}
             }
             $search[] = "(" . implode(" OR ", $lookfor) . ")";
